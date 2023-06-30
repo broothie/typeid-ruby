@@ -1,4 +1,4 @@
-name: Test and Tag
+name: Main
 
 on:
   push:
