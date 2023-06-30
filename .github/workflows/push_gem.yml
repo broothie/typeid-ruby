@@ -2,7 +2,7 @@ name: Push Ruby Gem
 
 on:
   push:
-    tags: [*]
+    tags: ["*"]
 
 jobs:
   push:
