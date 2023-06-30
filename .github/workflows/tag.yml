@@ -13,5 +13,13 @@ jobs:
         with:
           fetch-depth: 2
 
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1.152.0
+        with:
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+      - name: Run Specs
+        run: bin/rspec
+
       - name: Tag new version
         uses: salsify/action-detect-and-tag-new-version@v2
