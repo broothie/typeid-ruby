@@ -1,4 +1,4 @@
-require_relative "./lib/typeid.rb"
+require_relative "./lib/typeid/version.rb"
 
 Gem::Specification.new do |gem|
   gem.name = "typeid"

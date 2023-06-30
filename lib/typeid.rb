@@ -1,8 +1,6 @@
 require_relative "./typeid/uuid.rb"
 
 class TypeID < String
-  VERSION = "0.1.0".freeze
-
   SUFFIX_LENGTH = 26
   MAX_PREFIX_LENGTH = 63
 
