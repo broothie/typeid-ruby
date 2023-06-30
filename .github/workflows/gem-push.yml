@@ -3,8 +3,6 @@ name: Ruby Gem
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
@@ -16,10 +14,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Ruby 3.0.0
-      uses: actions/setup-ruby@v1
+
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1.152.0
       with:
-        ruby-version: 3.0.0
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
     - name: Publish to RubyGems
       run: |
