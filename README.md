@@ -1,6 +1,8 @@
 # TypeID Ruby
 
-A Ruby implementation of [TypeIDs](https://github.com/jetpack-io/typeid)
+### A Ruby implementation of [TypeIDs](https://github.com/jetpack-io/typeid)
+
+[![Gem Version](https://badge.fury.io/rb/typeid.svg)](https://badge.fury.io/rb/typeid)
 
 TypeIDs are a modern, **type-safe**, globally unique identifier based on the upcoming
 UUIDv7 standard. They provide a ton of nice properties that make them a great choice
