@@ -1,8 +1,8 @@
 name: Push Ruby Gem
 
 on:
-  push:
-    tags: ["*"]
+  release:
+    types: [published]
 
 jobs:
   push:
