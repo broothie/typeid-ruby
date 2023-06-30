@@ -2,6 +2,7 @@
 
 ### A Ruby implementation of [TypeIDs](https://github.com/jetpack-io/typeid)
 
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Main](https://github.com/broothie/typeid-ruby/actions/workflows/main.yml/badge.svg)](https://github.com/broothie/typeid-ruby/actions/workflows/main.yml)
 [![codecov](https://codecov.io/gh/broothie/typeid-ruby/branch/main/graph/badge.svg?token=9XjyMNIb4z)](https://codecov.io/gh/broothie/typeid-ruby)
 
