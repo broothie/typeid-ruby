@@ -22,19 +22,3 @@ jobs:
       - uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-
-  tag:
-    needs: test
-    if: github.ref == 'refs/heads/main'
-
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
-
-      - uses: salsify/action-detect-and-tag-new-version@v2
