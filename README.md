@@ -8,3 +8,4 @@ as the primary identifiers for your data in a database, APIs, and distributed sy
 Read more about TypeIDs in their [spec](https://github.com/jetpack-io/typeid).
 
 This particular implementation provides a Ruby library for generating and parsing TypeIDs.
+# typeid-ruby
