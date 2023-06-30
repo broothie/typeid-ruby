@@ -17,7 +17,8 @@ jobs:
         with:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
-      - run: bin/rspec
+      - name: Run specs
+        run: bin/rspec
 
       - uses: codecov/codecov-action@v3
         with:
