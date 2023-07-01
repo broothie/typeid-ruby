@@ -7,7 +7,10 @@ Gem::Specification.new do |gem|
   gem.authors = ["Andrew Booth"]
   gem.homepage = "https://github.com/broothie/typeid-ruby"
   gem.license = "Apache-2.0"
-  gem.metadata = { "source_code_uri" => "https://github.com/broothie/typeid-ruby" }
+  gem.metadata = {
+    "source_code_uri" => "https://github.com/broothie/typeid-ruby",
+    "github_repo" => "https://github.com/broothie/typeid-ruby",
+  }
 
   gem.required_ruby_version = ">= 3.0.0"
   gem.files = Dir.glob("lib/**/*.rb")
