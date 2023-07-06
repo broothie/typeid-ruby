@@ -27,6 +27,12 @@ RSpec.describe TypeID do
     it { is_expected.to eq string }
   end
 
+  describe ".nil" do
+    subject(:type_id) { TypeID.nil }
+
+    it { is_expected.to eq "00000000000000000000000000" }
+  end
+
   describe "#string" do
     it { is_expected.to eq "#{prefix}_#{suffix}" }
   end
