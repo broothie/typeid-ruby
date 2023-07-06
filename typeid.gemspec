@@ -15,8 +15,9 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = ">= 3.0.0"
   gem.files = Dir.glob("lib/**/*.rb")
   gem.add_runtime_dependency "uuid7", "~> 0.2.0"
-  gem.add_development_dependency "rspec", "~> 3.12"
   gem.add_development_dependency "pry", "~> 0.14.2"
+  gem.add_development_dependency "rake", "~> 13.0"
+  gem.add_development_dependency "rspec", "~> 3.12"
   gem.add_development_dependency "simplecov", "~> 0.22.0"
   gem.add_development_dependency "simplecov-cobertura", "~> 2.1"
 end

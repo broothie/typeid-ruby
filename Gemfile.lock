@@ -14,6 +14,7 @@ GEM
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    rake (13.0.6)
     rexml (3.2.5)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
@@ -47,6 +48,7 @@ PLATFORMS
 
 DEPENDENCIES
   pry (~> 0.14.2)
+  rake (~> 13.0)
   rspec (~> 3.12)
   simplecov (~> 0.22.0)
   simplecov-cobertura (~> 2.1)
