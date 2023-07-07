@@ -1,4 +1,11 @@
 
+task default: :list
+
+desc "List tasks"
+task :list do
+  sh "rake -AT"
+end
+
 desc "Run specs"
 task specs: %i[bundle] do
   sh "bin/rspec"
