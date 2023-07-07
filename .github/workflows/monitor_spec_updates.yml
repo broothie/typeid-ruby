@@ -1,8 +1,9 @@
 name: "Monitor spec updates"
 
-on:
-  schedule:
-    - cron: "0 0 * * *" # Daily
+on: workflow_dispatch
+#on:
+#  schedule:
+#    - cron: "0 0 * * *" # Daily
 
 jobs:
   check:
