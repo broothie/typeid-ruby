@@ -1,0 +1,35 @@
+name: "Monitor spec updates"
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Daily
+
+jobs:
+  check:
+    runs-on: "ubuntu-latest"
+    permissions:
+      contents: "write"
+      pull-requests: "write"
+
+    steps:
+      - uses: "actions/checkout@v3"
+
+      - name: "Copy valid.yml"
+        run: |
+          curl https://api.github.com/repos/jetpack-io/typeid/contents/spec/valid.yml \ 
+            -H 'Accept: application/vnd.github.raw' \
+            > spec/valid.yml
+
+      - name: "Copy invalid.yml"
+        run: |
+          curl https://api.github.com/repos/jetpack-io/typeid/contents/spec/invalid.yml \ 
+            -H 'Accept: application/vnd.github.raw' \
+            > spec/invalid.yml
+
+      - name: "Check for diff"
+        run: git diff
+
+      - uses: "peter-evans/create-pull-request@v5"
+        with:
+          title: "Spec updates"
+          assignees: "broothie"
