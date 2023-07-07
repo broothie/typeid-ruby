@@ -54,6 +54,7 @@ class TypeID < String
     raise Error, "prefix must be lowercase ASCII characters" unless prefix.match?(/^[a-z]*$/)
     raise Error, "suffix must be #{SUFFIX_LENGTH} characters" unless suffix.length == SUFFIX_LENGTH
     raise Error, "suffix must only contain the letters in '#{TypeID::UUID::Base32::ALPHABET}'" unless suffix.chars.all? { |char| TypeID::UUID::Base32::ALPHABET.include?(char) }
+    raise Error, "suffix must start with a 0-7 digit to avoid overflows" unless ("0".."7").cover?(suffix.chars.first)
 
     @prefix = prefix
     @suffix = suffix
