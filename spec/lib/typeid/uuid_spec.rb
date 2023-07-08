@@ -28,4 +28,10 @@ RSpec.describe TypeID::UUID do
 
     it { is_expected.to eq base32 }
   end
+
+  describe "#timestamp" do
+    subject(:timestamp) { uuid.timestamp }
+
+    it { is_expected.to eq 1686760803066 }
+  end
 end
