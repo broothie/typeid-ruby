@@ -2,15 +2,28 @@ require "uuid7"
 require_relative "./uuid/base32.rb"
 
 class TypeID < String
+  # Represents a UUID. Can be treated as a string.
   class UUID < String
+    # @return [Array<Integer>]
     attr_reader :bytes
 
-    # @param timestamp [Integer]
+    # Utility method to generate a timestamp as milliseconds since the Unix epoch.
+    #
+    # @return [Integer]
+    def self.timestamp
+      Process.clock_gettime(Process::CLOCK_REALTIME, :millisecond)
+    end
+
+    # Generates a new +UUID+, using UUID7.
+    #
+    # @param timestamp [Integer] milliseconds since the Unix epoch
     # @return [TypeID::UUID]
-    def self.generate(timestamp: Process.clock_gettime(Process::CLOCK_REALTIME, :millisecond))
+    def self.generate(timestamp: self.class.timestamp)
       from_string(UUID7.generate(timestamp: timestamp))
     end
 
+    # Parses a +UUID+ from a base32 string.
+    #
     # @param string [String]
     # @return [TypeID::UUID]
     def self.from_base32(string)
