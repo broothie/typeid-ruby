@@ -15,22 +15,17 @@ jobs:
     steps:
       - uses: "actions/checkout@v3"
 
-      - name: "Copy valid.yml"
-        run: |
-          curl https://api.github.com/repos/jetpack-io/typeid/contents/spec/valid.yml \ 
-            -H 'Accept: application/vnd.github.raw' \
-            > spec/valid.yml
+      - uses: "ruby/setup-ruby@v1.152.0"
+        with:
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
-      - name: "Copy invalid.yml"
-        run: |
-          curl https://api.github.com/repos/jetpack-io/typeid/contents/spec/invalid.yml \ 
-            -H 'Accept: application/vnd.github.raw' \
-            > spec/invalid.yml
+      - name: "Update spec case files"
+        run: "bin/rake update_spec_case_files"
 
       - name: "Check for diff"
-        run: git diff
+        run: "git diff"
 
       - uses: "peter-evans/create-pull-request@v5"
         with:
-          title: "Spec updates"
+          title: "Spec case updates"
           assignees: "broothie"

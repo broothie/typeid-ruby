@@ -24,3 +24,14 @@ desc "Run bundle install"
 task :bundle do
   sh "bundle install"
 end
+
+desc "Update spec case files"
+task :update_spec_case_files do |spec|
+  %w[valid invalid].each do
+    sh <<~BASH
+      curl https://api.github.com/repos/jetpack-io/typeid/contents/spec/#{spec}.yml \
+        -H 'Accept: application/vnd.github.raw' \
+        > spec/#{spec}.yml
+    BASH
+  end
+end
