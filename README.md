@@ -17,7 +17,7 @@ This particular implementation provides a Ruby library for generating and parsin
 ## Installation
 
 ```shell
-gem install typeid-ruby
+gem install typeid
 ```
 
 ## Usage
