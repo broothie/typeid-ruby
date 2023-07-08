@@ -16,7 +16,6 @@ require_relative "./typeid/uuid.rb"
 # To create a +TypeID+ from a timestamp (in milliseconds since the Unix epoch):
 #   TypeID.new("foo", timestamp: 1688847445998) #=> #<TypeID foo_01h4vjdvzefw18zfwz5dxw5y8g>
 class TypeID < String
-  SUFFIX_LENGTH = 26
   MAX_PREFIX_LENGTH = 63
 
   class Error < StandardError; end
