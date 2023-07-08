@@ -1,9 +1,8 @@
 name: "Monitor spec updates"
 
-on: workflow_dispatch
-#on:
-#  schedule:
-#    - cron: "0 0 * * *" # Daily
+on:
+  schedule:
+    - cron: "0 0 * * *" # Midnight-ly
 
 jobs:
   check:
@@ -15,22 +14,10 @@ jobs:
     steps:
       - uses: "actions/checkout@v3"
 
-      - name: "Copy valid.yml"
-        run: |
-          curl https://api.github.com/repos/jetpack-io/typeid/contents/spec/valid.yml \ 
-            -H 'Accept: application/vnd.github.raw' \
-            > spec/valid.yml
-
-      - name: "Copy invalid.yml"
-        run: |
-          curl https://api.github.com/repos/jetpack-io/typeid/contents/spec/invalid.yml \ 
-            -H 'Accept: application/vnd.github.raw' \
-            > spec/invalid.yml
-
-      - name: "Check for diff"
-        run: git diff
+      - name: "Update spec case files"
+        run: "bin/update_spec_case_files.sh"
 
       - uses: "peter-evans/create-pull-request@v5"
         with:
-          title: "Spec updates"
+          title: "Spec case updates"
           assignees: "broothie"

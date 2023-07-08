@@ -24,3 +24,8 @@ desc "Run bundle install"
 task :bundle do
   sh "bundle install"
 end
+
+desc "Update spec case files"
+task :update_spec_case_files do |spec|
+  sh "bin/update_spec_case_files.sh"
+end
