@@ -2,22 +2,37 @@ require "uuid7"
 require_relative "./uuid/base32.rb"
 
 class TypeID < String
+  # Represents a UUID. Can be treated as a string.
   class UUID < String
+    # @return [Array<Integer>]
     attr_reader :bytes
 
-    # @param timestamp [Integer]
+    # Utility method to generate a timestamp as milliseconds since the Unix epoch.
+    #
+    # @return [Integer]
+    def self.timestamp
+      Process.clock_gettime(Process::CLOCK_REALTIME, :millisecond)
+    end
+
+    # Generates a new +UUID+, using gem "uuid7".
+    #
+    # @param timestamp [Integer] milliseconds since the Unix epoch
     # @return [TypeID::UUID]
-    def self.generate(timestamp: Process.clock_gettime(Process::CLOCK_REALTIME, :millisecond))
+    def self.generate(timestamp: self.class.timestamp)
       from_string(UUID7.generate(timestamp: timestamp))
     end
 
-    # @param string [String]
+    # Parses a +UUID+ from a base32 +String+.
+    #
+    # @param string [String] base32-encoded UUID
     # @return [TypeID::UUID]
     def self.from_base32(string)
       new(TypeID::UUID::Base32.decode(string))
     end
 
-    # @param string [String]
+    # Parses a +UUID+ from a raw +String+.
+    #
+    # @param string [String] raw UUID
     # @return [TypeID::UUID]
     def self.from_string(string)
       bytes = string
@@ -29,7 +44,9 @@ class TypeID < String
       new(bytes)
     end
 
-    # @param bytes [Array<Integer>]
+    # Initializes a +UUID+ from an array of bytes.
+    #
+    # @param bytes [Array<Integer>] size 16 byte array
     def initialize(bytes)
       @bytes = bytes
 
