@@ -16,6 +16,14 @@ This particular implementation provides a Ruby library for generating and parsin
 
 ## Installation
 
+### If using bundler
+
+```shell
+bundle add typeid
+```
+
+### If not
+
 ```shell
 gem install typeid
 ```
