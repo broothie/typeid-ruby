@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    typeid (0.2.0)
+    typeid (0.2.1)
       uuid7 (~> 0.2.0)
 
 GEM
