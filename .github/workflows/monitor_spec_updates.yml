@@ -1,9 +1,8 @@
 name: "Monitor spec updates"
 
-on: workflow_dispatch
-#on:
-#  schedule:
-#    - cron: "0 0 * * *" # Daily
+on:
+  schedule:
+    - cron: "0 0 * * *" # Midnight-ly
 
 jobs:
   check:
@@ -17,9 +16,6 @@ jobs:
 
       - name: "Update spec case files"
         run: "bin/update_spec_case_files.sh"
-
-      - name: "Check for diff"
-        run: "git diff"
 
       - uses: "peter-evans/create-pull-request@v5"
         with:
