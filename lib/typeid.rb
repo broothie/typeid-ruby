@@ -30,7 +30,7 @@ class TypeID < String
 
   # Parses a +TypeID+ from a string.
   #
-  # @param string [String]
+  # @param string [String] string representation of a +TypeID+
   # @return [TypeID]
   def self.from_string(string)
     case string.split("_")
@@ -68,7 +68,7 @@ class TypeID < String
   #
   # @return [TypeID]
   def self.nil
-    @nil ||= from("", "0" * SUFFIX_LENGTH)
+    @nil ||= from("", "0" * TypeID::UUID::Base32::ENCODED_STRING_LENGTH)
   end
 
   # Creates a +TypeID+ given a prefix and an optional suffix or timestamp (in milliseconds since the Unix epoch).
@@ -76,8 +76,8 @@ class TypeID < String
   # When +suffix+ or +timestamp+ is provided, creates a +TypeID+ from the given value.
   #
   # @param prefix [String]
-  # @param timestamp [Integer]
-  # @param suffix [String]
+  # @param timestamp [Integer] milliseconds since the Unix epoch
+  # @param suffix [String] base32-encoded UUID
   def initialize(
     prefix,
     timestamp: TypeID::UUID.timestamp,
@@ -85,7 +85,7 @@ class TypeID < String
   )
     raise Error, "prefix length cannot be greater than #{MAX_PREFIX_LENGTH}" if prefix.length > MAX_PREFIX_LENGTH
     raise Error, "prefix must be lowercase ASCII characters" unless prefix.match?(/^[a-z]*$/)
-    raise Error, "suffix must be #{SUFFIX_LENGTH} characters" unless suffix.length == SUFFIX_LENGTH
+    raise Error, "suffix must be #{TypeID::UUID::Base32::ENCODED_STRING_LENGTH} characters" unless suffix.length == TypeID::UUID::Base32::ENCODED_STRING_LENGTH
     raise Error, "suffix must only contain the letters in '#{TypeID::UUID::Base32::ALPHABET}'" unless suffix.chars.all? { |char| TypeID::UUID::Base32::ALPHABET.include?(char) }
     raise Error, "suffix must start with a 0-7 digit to avoid overflows" unless ("0".."7").cover?(suffix.chars.first)
 
