@@ -53,9 +53,20 @@ class TypeID < String
       super(string)
     end
 
+    # Returns the +UUID+ encoded as a base32 +String+.
+    #
     # @return [String]
     def base32
       TypeID::UUID::Base32.encode(bytes)
+    end
+
+    # Returns the timestamp of the +UUID+ as milliseconds since the Unix epoch.
+    #
+    # @return [Integer]
+    def timestamp
+      bytes[0..5]
+        .map.with_index { |byte, index| byte << (5 - index) * 8 }
+        .inject(:|)
     end
 
     # @return [String]
