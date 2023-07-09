@@ -19,5 +19,6 @@ jobs:
 
       - uses: "peter-evans/create-pull-request@v5"
         with:
+          branch: "monitor-spec-updates"
           title: "Spec case updates"
           assignees: "broothie"
