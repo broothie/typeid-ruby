@@ -32,11 +32,14 @@ class TypeID < String
   # @param string [String] string representation of a +TypeID+
   # @return [TypeID]
   def self.from_string(string)
-    case string.split("_")
-    in [suffix]
+    result = string.rpartition("_")
+    puts result
+
+    case string.rpartition("_")
+    in ["", "", suffix]
       from("", suffix)
 
-    in [prefix, suffix]
+    in [prefix, "_", suffix]
       raise Error, "prefix cannot be empty when there's a separator" if prefix.empty?
 
       from(prefix, suffix)
@@ -83,7 +86,8 @@ class TypeID < String
     suffix: TypeID::UUID.generate(timestamp: timestamp).base32
   )
     raise Error, "prefix length cannot be greater than #{MAX_PREFIX_LENGTH}" if prefix.length > MAX_PREFIX_LENGTH
-    raise Error, "prefix must be lowercase ASCII characters" unless prefix.match?(/^[a-z]*$/)
+    raise Error, "prefix must be lowercase ASCII characters" unless prefix.match?(/^[a-z_]*$/)
+    raise Error, "prefix cannot start or end with an underscore" if prefix.start_with?("_") || prefix.end_with?("_")
     raise Error, "suffix must be #{TypeID::UUID::Base32::ENCODED_STRING_LENGTH} characters" unless suffix.length == TypeID::UUID::Base32::ENCODED_STRING_LENGTH
     raise Error, "suffix must only contain the letters in '#{TypeID::UUID::Base32::ALPHABET}'" unless suffix.chars.all? { |char| TypeID::UUID::Base32::ALPHABET.include?(char) }
     raise Error, "suffix must start with a 0-7 digit to avoid overflows" unless ("0".."7").cover?(suffix.chars.first)
