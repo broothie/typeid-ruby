@@ -32,9 +32,6 @@ class TypeID < String
   # @param string [String] string representation of a +TypeID+
   # @return [TypeID]
   def self.from_string(string)
-    result = string.rpartition("_")
-    puts result
-
     case string.rpartition("_")
     in ["", "", suffix]
       from("", suffix)
